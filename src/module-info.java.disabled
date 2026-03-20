@@ -1,0 +1,4 @@
+module stage2 {
+    requires java.desktop;
+    requires junit.platform.console.standalone;
+}

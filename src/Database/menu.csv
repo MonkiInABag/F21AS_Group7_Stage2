@@ -1,0 +1,43 @@
+ID,Name,Description,Category,Price
+BEV-001,Latte,Hot milk coffee,Drink,3.50
+BEV-002,Espresso,Strong black coffee,Drink,2.80
+BEV-003,Cappuccino,Espresso with steamed milk foam,Drink,3.40
+BEV-004,Americano,Espresso diluted with hot water,Drink,3.00
+BEV-005,Flat White,Smooth espresso with steamed milk,Drink,3.40
+BEV-006,Mocha,Chocolate flavoured latte,Drink,3.80
+BEV-007,Macchiato,Espresso with a dash of milk foam,Drink,3.10
+BEV-008,Hot Chocolate,Rich chocolate drink with milk,Drink,3.60
+BEV-009,Chai Latte,Spiced tea with steamed milk,Drink,3.70
+BEV-010,Green Tea,Hot brewed green tea,Drink,2.50
+BEV-011,English Breakfast Tea,Classic black tea,Drink,2.40
+BEV-012,Iced Latte,Cold milk coffee with ice,Drink,3.70
+BEV-013,Iced Americano,Chilled espresso with water and ice,Drink,3.30
+BEV-014,Orange Juice,Fresh squeezed orange juice,Drink,3.00
+BEV-015,Smoothie,Mixed fruit smoothie,Drink,4.20
+
+FOOD-001,Croissant,Buttery pastry,Food,2.20
+FOOD-002,Sandwich,Chicken sandwich,Food,4.50
+FOOD-003,Pain au Chocolat,Pastry with chocolate filling,Food,2.40
+FOOD-004,Blueberry Muffin,Soft muffin with blueberries,Food,2.60
+FOOD-005,Banana Bread,Sweet banana loaf slice,Food,2.80
+FOOD-006,Chocolate Brownie,Rich chocolate brownie square,Food,3.00
+FOOD-007,Cheese Toastie,Grilled cheese sandwich,Food,4.20
+FOOD-008,Ham and Cheese Toastie,Grilled ham and cheese sandwich,Food,4.60
+FOOD-009,Avocado Toast,Toasted bread with smashed avocado,Food,5.20
+FOOD-010,Yoghurt Parfait,Yoghurt with granola and fruit,Food,3.90
+FOOD-011,Oatmeal,Warm oats with honey,Food,3.20
+FOOD-012,Cinnamon Roll,Sweet cinnamon pastry,Food,3.10
+FOOD-013,Quiche Slice,Savoury egg tart slice,Food,4.40
+FOOD-014,Salad Bowl,Fresh mixed salad bowl,Food,4.80
+FOOD-015,Protein Wrap,Chicken and veggie wrap,Food,5.40
+
+OTH-001,Tote Bag,Coffee shop tote bag,Other,6.00
+OTH-002,Notebook,Small notebook,Other,3.00
+OTH-003,Reusable Cup,Branded reusable coffee cup,Other,7.50
+OTH-004,Travel Mug,Insulated coffee travel mug,Other,9.00
+OTH-005,Coffee Beans 250g,House blend coffee beans,Other,8.50
+OTH-006,Ground Coffee 250g,Fresh ground coffee pack,Other,8.50
+OTH-007,Gift Card £10,Prepaid gift card,Other,10.00
+OTH-008,Gift Card £20,Prepaid gift card,Other,20.00
+OTH-009,Sticker Pack,Coffee themed sticker set,Other,2.50
+OTH-010,Enamel Pin,Coffee cup enamel pin badge,Other,4.00

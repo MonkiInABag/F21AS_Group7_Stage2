@@ -1,0 +1,7 @@
+{
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.search.scope": "all",
+    "java.project.sourcePaths": [
+        "stage2"
+    ]
+}
