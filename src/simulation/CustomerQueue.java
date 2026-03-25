@@ -18,6 +18,14 @@ public class CustomerQueue {
 
     // Adds an order to the back of the queue and wakes any waiting staff.
     public synchronized void enqueue(Order order) {
+        if (order == null)
+        {
+            throw new IllegalArgumentException("Order cannot be null");
+        }
+        if (done)
+        {
+            throw new IllegalStateException("Cannot enqueue after queue is marked done");
+        }        
         queue.addLast(order);
         notifyAll(); // wake staff threads blocked in dequeue()
     }
@@ -52,7 +60,7 @@ public class CustomerQueue {
         return done && queue.isEmpty();
     }
 
-    // Returns a snapshot of the current queue contents
+    // Returns a copy snapshot of the current queue contents - allowing safe viewiing
     public synchronized List<Order> getSnapshot() {
         return new LinkedList<>(queue);
     }
