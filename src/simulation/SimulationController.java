@@ -49,14 +49,21 @@ public class SimulationController {
 
     // Adjusts simulation speed.
     public void setSpeed(int multiplier) {
-        model.setSpeedMultiplier(multiplier);
-        int newArrivalMs = Math.max(200, BASE_ARRIVAL_MS / multiplier);
-        arrivalThread.setArrivalDelayMs(newArrivalMs);
-    }
+    SimulationLogger logger = SimulationLogger.getInstance();
+
+    model.setSpeedMultiplier(multiplier);
+    int newArrivalMs = Math.max(200, BASE_ARRIVAL_MS / multiplier);
+    arrivalThread.setArrivalDelayMs(newArrivalMs);
+
+    logger.log("Simulation speed set to x" + multiplier);
+}
 
     // Called by SimulationView when the simulation finishes.
     public String onSimulationComplete() {
-        SimulationLogger.getInstance().writeToFile("simulation_log.txt");
+    SimulationLogger logger = SimulationLogger.getInstance();
+    logger.log("Simulation complete. Generating report...");
+
+    SimulationLogger.getInstance().writeToFile("simulation_log.txt");
 
         // Build report using Stage 1 ReportGenerator
         ReportGenerator rg = new ReportGenerator();
