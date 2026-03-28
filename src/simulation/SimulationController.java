@@ -47,6 +47,10 @@ public class SimulationController {
         arrivalThread.start();
     }
 
+    public void togglePause() {
+        model.setPaused(!model.isPaused());
+    }
+    
     // Adjusts simulation speed.
     public void setSpeed(int multiplier) {
     SimulationLogger logger = SimulationLogger.getInstance();
@@ -56,7 +60,7 @@ public class SimulationController {
     arrivalThread.setArrivalDelayMs(newArrivalMs);
 
     logger.log("Simulation speed set to x" + multiplier);
-}
+    }
 
     // Called by SimulationView when the simulation finishes.
     public String onSimulationComplete() {
@@ -78,13 +82,13 @@ public class SimulationController {
         Main.BillingService billing = new Main.BillingService();
         return rg.generateSummaryReport(menu, model.getCompletedOrders(), billing);
     }
-    public void pauseSimulation() {
-    SimulationLogger.getInstance().log("Pause requested.");
-    model.pause();
-}
+    //public void pauseSimulation() {
+    // SimulationLogger.getInstance().log("Pause requested.");
+    // model.pause();
+    //}
 
-public void resumeSimulation() {
-    SimulationLogger.getInstance().log("Resume requested.");
-    model.resume();
-}
+// public void resumeSimulation() {
+//     SimulationLogger.getInstance().log("Resume requested.");
+//     model.resume();
+// }
 }

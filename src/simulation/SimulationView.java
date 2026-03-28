@@ -33,6 +33,9 @@ public class SimulationView extends JFrame implements SimulationObserver {
     // Prevent the completion dialog from showing more than once
     private boolean completionShown = false;
 
+    // pause/resume button
+    private final JButton pauseButton;
+
     /*
      * Constructor for the SimulationView.
      * Initialises UI components, registers observer, and sets up window behaviour.
@@ -82,6 +85,11 @@ public class SimulationView extends JFrame implements SimulationObserver {
                 controller.setSpeed(speedSlider.getValue());
             }
         });
+
+        // --- Pause button ---
+        pauseButton = new JButton("Pause");
+        pauseButton.setFocusPainted(false);
+        pauseButton.addActionListener(e -> controller.togglePause());
 
         setContentPane(buildLayout());
 
@@ -141,6 +149,8 @@ public class SimulationView extends JFrame implements SimulationObserver {
         rightBar.add(speedLabel);
         rightBar.add(speedSlider);
 
+        rightBar.add(pauseButton);
+         
         header.add(rightBar, BorderLayout.EAST);
         return header;
     }
@@ -188,6 +198,7 @@ public class SimulationView extends JFrame implements SimulationObserver {
         SwingUtilities.invokeLater(() -> {
             refreshQueue(model);
             refreshStaff(model);
+            pauseButton.setText(model.isPaused() ? "Resume" : "Pause");
             if (model.isSimulationComplete() && !completionShown) {
                 completionShown = true;
                 showCompletionDialog();

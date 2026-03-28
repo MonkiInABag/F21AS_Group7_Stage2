@@ -37,7 +37,7 @@ public class StaffMember extends Thread {
 
         while (running) {
             // pause check 
-            model.waitIfPaused();
+            // model.waitIfPaused();
             Order order;
             try {
                 updateStatus("Waiting for next order...");
@@ -76,13 +76,13 @@ public class StaffMember extends Thread {
             // Simulate the time it takes to prepare the order
             int processingMs = calculateProcessingTimeMs(order);
             try {
-                Thread.sleep(processingMs);
+                sleepWithPause(processingMs);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;
             }
             // pause check
-             model.waitIfPaused();
+            //model.waitIfPaused();
 
             // --- Order complete ---
             logger.log("Staff " + staffId + " completed order for '" + customerName + "'.");
@@ -163,5 +163,17 @@ public class StaffMember extends Thread {
     public void stopStaff() {
         running = false;
         interrupt();
+    }
+
+    private void sleepWithPause(int totalMs) throws InterruptedException {
+        int remaining = totalMs;
+        final int chunk = 200;
+
+        while (remaining > 0) {
+            model.waitIfPaused();
+            int step = Math.min(chunk, remaining);
+            Thread.sleep(step);
+            remaining -= step;
+        }
     }
 }

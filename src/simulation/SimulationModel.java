@@ -21,6 +21,7 @@ public class SimulationModel {
 
     //pause flag
     private boolean paused = false;
+    private final Object pauseLock;
 
     public SimulationModel(CustomerQueue queue, int numStaff) {
         this.queue              = queue;
@@ -31,6 +32,9 @@ public class SimulationModel {
         this.finishedStaffCount = 0;
         this.speedMultiplier    = 1;
         this.simulationComplete = false;
+
+        this.paused = false;
+        this.pauseLock = new Object();
 
         for (int i = 1; i <= numStaff; i++) {
             staffStatus.put(i, "Starting...");
@@ -104,23 +108,29 @@ public class SimulationModel {
 
     // PAUSE / RESUME FUNCTIONALITY
 
-    public synchronized void pause() {
-        paused = true;
-        SimulationLogger.getInstance().log("Simulation paused.");
+    public void setPaused(boolean paused) {
+        synchronized (pauseLock) {
+            this.paused = paused;
+            if (!paused) {
+                pauseLock.notifyAll();
+            }
+        }
+
+        SimulationLogger.getInstance().log(
+                paused ? "Simulation paused." : "Simulation resumed.");
+        notifyObservers();
     }
 
-    public synchronized void resume() {
-        paused = false;
-        notifyAll();
-        SimulationLogger.getInstance().log("Simulation resumed.");
+    public boolean isPaused() {
+        synchronized (pauseLock) {
+            return paused;
+        }
     }
 
-    public synchronized void waitIfPaused() {
-        while (paused) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+    public void waitIfPaused() throws InterruptedException {
+        synchronized (pauseLock) {
+            while (paused) {
+                pauseLock.wait();
             }
         }
     }
