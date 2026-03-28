@@ -36,10 +36,13 @@ public class StaffMember extends Thread {
         updateStatus("Idle – waiting for first customer");
 
         while (running) {
+            // pause check 
+            model.waitIfPaused();
             Order order;
             try {
                 updateStatus("Waiting for next order...");
                 order = queue.dequeue(); // blocks until an order arrives or queue is done
+                model.waitIfPaused();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 logger.log("Staff " + staffId + " interrupted.");
@@ -78,6 +81,8 @@ public class StaffMember extends Thread {
                 Thread.currentThread().interrupt();
                 break;
             }
+            // pause check
+             model.waitIfPaused();
 
             // --- Order complete ---
             logger.log("Staff " + staffId + " completed order for '" + customerName + "'.");

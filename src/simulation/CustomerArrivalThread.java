@@ -40,6 +40,8 @@ public class CustomerArrivalThread extends Thread {
         logger.log("Coffee shop opened. " + orders.size() + " order(s) to process.");
 
         for (Order order : orders) {
+            // pause check
+            model.waitIfPaused();
             if(!running)
             {
                 logger.log("Arrival thread stop requested");
@@ -56,6 +58,8 @@ public class CustomerArrivalThread extends Thread {
                 logger.log("Arrival thread interrupted – stopping early.");
                 break;
             }
+            // pause check
+            model.waitIfPaused();
             try {
                 queue.enqueue(order);
             }catch(IllegalStateException e){

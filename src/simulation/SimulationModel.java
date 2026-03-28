@@ -19,6 +19,9 @@ public class SimulationModel {
     private volatile int                 speedMultiplier;   // 1 = normal speed
     private boolean                      simulationComplete;
 
+    //pause flag
+    private boolean paused = false;
+
     public SimulationModel(CustomerQueue queue, int numStaff) {
         this.queue              = queue;
         this.numStaff           = numStaff;
@@ -97,5 +100,28 @@ public class SimulationModel {
 
     public int getNumStaff() {
         return numStaff;
+    }
+
+    // PAUSE / RESUME FUNCTIONALITY
+
+    public synchronized void pause() {
+        paused = true;
+        SimulationLogger.getInstance().log("Simulation paused.");
+    }
+
+    public synchronized void resume() {
+        paused = false;
+        notifyAll();
+        SimulationLogger.getInstance().log("Simulation resumed.");
+    }
+
+    public synchronized void waitIfPaused() {
+        while (paused) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 }

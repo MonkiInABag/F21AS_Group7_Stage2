@@ -78,4 +78,13 @@ public class SimulationController {
         Main.BillingService billing = new Main.BillingService();
         return rg.generateSummaryReport(menu, model.getCompletedOrders(), billing);
     }
+    public void pauseSimulation() {
+    SimulationLogger.getInstance().log("Pause requested.");
+    model.pause();
+}
+
+public void resumeSimulation() {
+    SimulationLogger.getInstance().log("Resume requested.");
+    model.resume();
+}
 }
