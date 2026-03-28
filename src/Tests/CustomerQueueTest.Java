@@ -132,4 +132,23 @@ public class CustomerQueueTest {
         assertFalse(queue.isEmpty());
         assertEquals(1, queue.size());
     }
+
+    @Test
+    @DisplayName("Dequeue blocks until item is added")
+    void dequeueBlocksUntilItemAdded() throws Exception {
+        CustomerQueue queue = new CustomerQueue();
+
+        Thread t = new Thread(() -> {
+            try {
+                Thread.sleep(100);
+                queue.enqueue(new Order("CUST-001", List.of("BEV-001"), LocalDateTime.now()));
+            } catch (Exception ignored) {}
+        });
+
+        t.start();
+
+        Order result = queue.dequeue();
+
+        assertNotNull(result);
+    }
 }
