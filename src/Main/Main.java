@@ -9,8 +9,8 @@ import simulation.*;
 
 public class Main {
     
-    private static final String MENU_FILE = "stage2\\src\\Database\\menu.csv";
-    private static final String QUEUE_FILE = "stage2\\src\\Database\\orderQueue.csv";
+    private static final String MENU_FILE = "src\\Database\\menu.csv";
+    private static final String QUEUE_FILE = "src\\Database\\orderQueue.csv";
     
     
     public static void main(String[] args) {
